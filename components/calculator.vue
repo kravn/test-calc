@@ -24,14 +24,14 @@
         v-if="n.active"
         @click="collect(n.key, n.multi)"
         :key="key"
-        :class="`btn--calculator ${n.color}`">
-        {{ n.label }}
+        :class="`btn--calculator ${n.color}`"
+        v-html="n.label">
       </div>
       <div
         v-else
         :key="key"
-        :class="`btn--calculator ${n.color}`">
-        {{ n.label }}
+        :class="`btn--calculator ${n.color}`"
+        v-html="n.label">
       </div>
     </template>
   </v-card>
