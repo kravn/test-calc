@@ -3,11 +3,11 @@
     light flat
     width="800"
     class="pa-0">
-    <v-card class="calc-screen pa-3" outlined>
+    <v-card class="calc-screen pa-3 ma-1" outlined>
       <v-card-actions class="pa-0">
         <v-spacer></v-spacer>
         <div v-if="answer">
-          Ans = {{ answer }}
+          Ans = <strong>{{ answer }}</strong>
         </div>
         <div v-else>&nbsp;</div>
       </v-card-actions>
