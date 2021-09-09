@@ -1,0 +1,29 @@
+.btn--calculator {
+  width: $button-width;
+  padding: 10px;
+  display: inline-block;
+  margin: 2px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: 500;
+  cursor: pointer;
+
+  &.button1 {
+    background-color: $button-1;
+    &:hover {
+      background-color: darken($button-1, 2%);
+    }
+  }
+  &.button2 {
+    background-color: $button-2;
+    &:hover {
+      background-color: darken($button-2, 2%);
+    }
+  }
+  &.button3 {
+    background-color: $button-3;
+    &:hover {
+      background-color: darken($button-3, 2%);
+    }
+  }
+}
