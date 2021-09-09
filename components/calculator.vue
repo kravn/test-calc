@@ -6,16 +6,26 @@
     <v-card class="calc-screen pa-3 ma-1" outlined>
       <v-card-actions class="pa-0">
         <v-spacer></v-spacer>
-        <div v-if="answer">
-          Ans = <strong>{{ answer }}</strong>
+        
+        <div v-if="answer || show">
+          <transition name="bounce"  enter-active-class="animated tada" leave-active-class="animated bounceOutRight">
+            <div v-show="show">
+              Ans = <strong>{{ answer }}</strong>
+            </div>
+          </transition>
         </div>
+        
         <div v-else>&nbsp;</div>
       </v-card-actions>
       <v-card-actions class="pa-0">
         <v-spacer></v-spacer>
-        <div class="display-1">
+        
+        <transition name="slide-fade">
+          <div v-show="show" class="display-1">
           {{ strValue }}
-        </div>
+          </div>
+        </transition>
+        
       </v-card-actions>
     </v-card>
     <template 
@@ -61,12 +71,16 @@
 
         if (multi) {
           if (val === '=') {
+            this.show = false
             try {
               this.answer = c.exec(this.strValue)
             }
             catch(e) {
               this.answer = e
             }
+            setTimeout(() => {
+              this.show = true
+            }, 100);
           }
           else if (val === 'ce') {
             this.strValue = '0'
@@ -90,7 +104,8 @@
       return {
         strValue: '0',
         answer: null,
-        flag: false
+        flag: false,
+        show: true
       }
     }
   }
