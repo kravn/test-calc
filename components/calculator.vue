@@ -28,22 +28,26 @@
         
       </v-card-actions>
     </v-card>
-    <template 
-      v-for="(n, key) in calcBtns">
-      <div
-        v-if="n.active"
-        @click="collect(n.key, n.multi)"
-        :key="key"
-        :class="`btn--calculator ${n.color}`"
-        v-html="n.label">
-      </div>
-      <div
-        v-else
-        :key="key"
-        :class="`btn--calculator ${n.color}`"
-        v-html="n.label">
-      </div>
-    </template>
+    
+    <div class="calc-keys">
+      <template 
+        v-for="(n, key) in calcBtns">
+        <div
+          v-if="n.active"
+          @click="collect(n.key, n.multi)"
+          :key="key"
+          :class="`btn--calculator ${n.color}`"
+          v-html="n.label">
+        </div>
+        <div
+          v-else
+          :key="key"
+          :class="`btn--calculator ${n.color}`"
+          v-html="n.label">
+        </div>
+      </template>
+    </div>
+    
   </v-card>
 </template>
 
@@ -71,6 +75,7 @@
 
         if (multi) {
           if (val === '=') {
+            this.reset = true
             this.show = false
             try {
               this.answer = c.exec(this.strValue)
@@ -83,9 +88,12 @@
             }, 100);
           }
           else if (val === 'ce') {
-            this.strValue = '0'
-            this.answer = null
+            this.resetValue()
           } else {
+            if (this.reset) {
+              this.strValue = ''
+              this.reset = false
+            }
             this.flag = false
             this.strValue += `${val}`
           }
@@ -94,10 +102,24 @@
           if (!this.flag) {
             this.strValue += `${val}`
             this.flag = true
+          } else {
+            this.strValue = this.strValue.slice(0, -1)
+            this.strValue += `${val}`
           }
           
         }
                 
+      },
+      resetValue () {
+        this.strValue = '0'
+        this.answer = null
+      }
+    },
+    watch: {
+      reset (val) {
+        if (val) {
+          // this.resetValue()
+        }
       }
     },
     data() {
@@ -105,7 +127,8 @@
         strValue: '0',
         answer: null,
         flag: false,
-        show: true
+        show: true,
+        reset: false
       }
     }
   }

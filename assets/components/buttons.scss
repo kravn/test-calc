@@ -26,6 +26,7 @@
     &:active {
       border: 1px solid darken($color: $button-1, $amount: 10%);
     }
+    
   }
   &.button2 {
     background-color: $button-2;
@@ -48,4 +49,32 @@
       border: 1px solid darken($color: $button-3, $amount: 20%);
     }
   }
+}
+
+.btn--calculator:first-child,
+.btn--calculator:nth-child(2) {
+  background-color: $button-1;
+  margin: 0;
+  width: 110px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  &:active {
+    border: 1px solid darken($color: $button-3, $amount: 20%);
+    margin: 0;
+  }
+}
+
+.btn--calculator:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 1px solid darken($color: $button-1, $amount: 4%);
+  margin-left: 4px;
+}
+
+.btn--calculator:nth-child(2) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 1px solid darken($color: $button-1, $amount: 4%);
+  margin-right: 5px;
 }
